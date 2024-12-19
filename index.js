@@ -10,6 +10,9 @@ app.use('/', (req, res) => {
     res.send('API Restful - Home')
 })
 
-app.listen(4000, () => {
-    console.log('servidor funcionando en el puerto 4000')
+//Definiendo el puerto
+const port = process.env.PORT || 4000;
+
+app.listen(port, () => {
+    console.log(`El servidor esta funcionando el puerto ${port}`)
 })
