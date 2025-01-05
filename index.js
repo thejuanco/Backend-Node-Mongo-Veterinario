@@ -6,6 +6,8 @@ const app = express();
 
 conectarDB();
 
+app.use(express.json());
+
 //Routing
 app.use('/api/veterinarios', VeterinarioRouter)
 
