@@ -53,7 +53,13 @@ const autenticar = async (req, res) => {
 
     if(!usuario){
         const error = new Error(`El usuario no existe`)
-        return res.status(403).json({message: "El usuario no existe"})
+        return res.status(403).json({message: error.message})
+    }
+    
+    //Comprobar si el usuario no esta confirmado
+    if(!usuario.confirmado){
+        const error = new Error(`Tu cuenta no esta confirmada`)
+        return res.status(403).json({message: error.message})
     }
 }
 
