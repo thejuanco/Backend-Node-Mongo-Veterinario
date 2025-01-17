@@ -61,6 +61,14 @@ const autenticar = async (req, res) => {
         const error = new Error(`Tu cuenta no esta confirmada`)
         return res.status(403).json({message: error.message})
     }
+
+    //Autenticar al usuario
+    if(usuario.comprobarPassword(password)) {
+        console.log('Usuario autenticado')
+    } else {
+        const error = new Error('Contraseña incorrecta')
+        return res.status(403).json({message: error.message})
+    }
 }
 
 export {
