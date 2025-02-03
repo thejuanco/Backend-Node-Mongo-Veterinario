@@ -9,8 +9,9 @@ const checkAuth = async (req, res, next) => {
             token = req.headers.authorization.split(" ")[1] //devuelve un arreglo con el string separado por el espacio
             //[1] le asignamos la posicion del token dentro del arreglo
             
-            const decoded = jwt.sign(token, process.env.JWT_SECRET)
+            const decoded = jwt.verify(token, process.env.JWT_SECRET)
             
+            //Crea una sesion con la información del veterinario
             req.veterinario = await Veterinario.findById(decoded.id).select("-password -token -confirmado")
             return next()
 
@@ -20,8 +21,10 @@ const checkAuth = async (req, res, next) => {
         }
     }
 
-    const error = new Error('Token no valido o inexistente')
-    res.status(403).json({msg: error.message})
+    if(!token){
+        const error = new Error('Token no valido o inexistente')
+        res.status(403).json({msg: error.message})
+    }
 
     next();
 }
