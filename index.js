@@ -1,15 +1,16 @@
 import express from 'express';
 import conectarDB from './config/db.js';
+import VeterinarioRouter from './routes/veterinario.routes.js'
 
 const app = express();
 
 //Establece la conexion con la base de datos
 conectarDB();
 
+app.use(express.json());
+
 //Routing
-app.use('/', (req, res) => {
-    res.send('API Restful - Home')
-})
+app.use('/api/veterinarios', VeterinarioRouter)
 
 //Definiendo el puerto
 const port = process.env.PORT || 4000;
