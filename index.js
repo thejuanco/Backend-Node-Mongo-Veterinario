@@ -3,6 +3,7 @@ import conectarDB from './config/db.js';
 
 const app = express();
 
+//Establece la conexion con la base de datos
 conectarDB();
 
 //Routing
