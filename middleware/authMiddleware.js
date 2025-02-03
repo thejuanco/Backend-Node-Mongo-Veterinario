@@ -1,7 +1,23 @@
-const checkAuth = (req, res, next) => {
+import jwt from 'jsonwebtoken';
+import Veterinario from '../models/Veterinario.js';
 
-    if(req.headers.authorization && req.headers.authorization.startswith('Bearer')){
-        console.log('Si tiene el token con bearer')
+const checkAuth = async (req, res, next) => {
+    let token
+
+    if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
+        try {
+            token = req.headers.authorization.split(" ")[1] //devuelve un arreglo con el string separado por el espacio
+            //[1] le asignamos la posicion del token dentro del arreglo
+            
+            const decoded = jwt.sign(token, process.env.JWT_SECRET)
+            
+            req.veterinario = await Veterinario.findById(decoded.id).select("-password -token -confirmado")
+            return next()
+
+        } catch (error) {
+            const e = new Error('Token no valido')
+            return res.status(403).json({msg: e.message})
+        }
     }
 
     const error = new Error('Token no valido o inexistente')
