@@ -7,6 +7,7 @@ const app = express();
 //Establece la conexion con la base de datos
 conectarDB();
 
+//Habilitar la lectura de formulario
 app.use(express.json());
 
 //Routing
