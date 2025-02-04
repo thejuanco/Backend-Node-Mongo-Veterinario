@@ -1,6 +1,7 @@
 import express from 'express';
 import conectarDB from './config/db.js';
 import VeterinarioRouter from './routes/veterinario.routes.js'
+import PacienteRouter from './routes/paciente.routes.js'
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 //Routing
 app.use('/api/veterinarios', VeterinarioRouter)
+app.use('/api/pacientes', PacienteRouter)
 
 //Definiendo el puerto
 const port = process.env.PORT || 4000;
