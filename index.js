@@ -11,8 +11,7 @@ conectarDB();
 
 //Dominios permitidos
 const dominiosPermitidos = [
-    'http://localhost:5173',
-    'http://localhost:4000'
+    "http://localhost:4000"
 ]
 
 const corsOptions = {
@@ -26,7 +25,7 @@ const corsOptions = {
     }
 }
 
-app.use(cors(corsOptions))
+app.use(cors());
 
 //Habilitar la lectura de formulario
 app.use(express.json());
