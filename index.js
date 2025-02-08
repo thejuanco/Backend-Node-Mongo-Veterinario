@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import conectarDB from './config/db.js';
 import VeterinarioRouter from './routes/veterinario.routes.js'
 import PacienteRouter from './routes/paciente.routes.js'
@@ -7,6 +8,25 @@ const app = express();
 
 //Establece la conexion con la base de datos
 conectarDB();
+
+//Dominios permitidos
+const dominiosPermitidos = [
+    'http://localhost:5173',
+    'http://localhost:4000'
+]
+
+const corsOptions = {
+    origin: function(origin, callback){
+        if(dominiosPermitidos.indexOf(origin) !== -1){
+            //El origen del request permitido
+            callback(null, true)
+        } else {
+            callback(new Error("No permitido por CORS"))
+        }
+    }
+}
+
+app.use(cors(corsOptions))
 
 //Habilitar la lectura de formulario
 app.use(express.json());
