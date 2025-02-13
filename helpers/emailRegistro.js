@@ -17,7 +17,7 @@ const emailRegistro = async (data) => {
         subject: "Comprueba tu cuenta en APV",
         text: `Hola ${data.nombre}, para confirmar tu cuenta, haz click en el siguiente enlace:`,
         html: `<h1>Hola ${data.nombre}</h1>
-            <p>Para confirmar tu cuenta, haz click en el siguiente enlace: <a href="${process.env.FRONTEND_URL}/confirmar/${data.token}}">Confirmar cuenta</a></p>
+            <p>Para confirmar tu cuenta, haz click en el siguiente enlace: <a href="${process.env.FRONTEND_URL}/confirmar/${data.token}">Confirmar cuenta</a></p>
 
             <p>Si tu no creaste tu cuenta ignora este correo</p>
         `,
