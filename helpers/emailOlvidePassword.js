@@ -17,7 +17,7 @@ const emailForgotPassword = async (data) => {
         subject: "Restablece tu contraseña",
         text: `Hola ${data.nombre}, haz solicitado cambiar tu contraseña`,
         html: `<h1>Hola ${data.nombre}</h1>
-            <p>Para restablecer tu contraseña, haz click en el siguiente enlace: <a href="${process.env.FRONTEND_URL}//${data.token}">Restablece tu contraseña</a></p>
+            <p>Para restablecer tu contraseña, haz click en el siguiente enlace: <a href="${process.env.FRONTEND_URL}/olvide-password/${data.token}">Restablece tu contraseña</a></p>
 
             <p>Si no fuiste tu, ignora este correo</p>
         `,
