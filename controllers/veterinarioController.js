@@ -157,7 +157,7 @@ const actualizarPefil = async (req, res) => {
     try {
         veterinario.nombre = req.body.nombre || veterinario.nombre;
         veterinario.email = req.body.email || veterinario.email;
-        veterinario.web = req.body.web || veterinario.web;
+        veterinario.sitioWeb = req.body.sitionWeb || veterinario.sitioWeb;
         veterinario.telefono = req.body.telefono || veterinario.telefono;
 
         const veterinairoActualizado = await veterinario.save();
