@@ -147,6 +147,26 @@ const nuevoPassword = async (req, res) => {
     }
 }
 
+const actualizarPefil = async (req, res) => {
+    const veterinario = await Veterinario.findById(req.params.id);
+    if(!veterinario)
+    {
+        return res.status(404).json({msg: "No se encontró el veterinario"});
+    }
+
+    try {
+        veterinario.nombre = req.body.nombre || veterinario.nombre;
+        veterinario.email = req.body.email || veterinario.email;
+        veterinario.web = req.body.web || veterinario.web;
+        veterinario.telefono = req.body.telefono || veterinario.telefono;
+
+        const veterinairoActualizado = await veterinario.save();
+        res.json(veterinairoActualizado)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export {
     registrar,
     perfil,
@@ -154,5 +174,6 @@ export {
     autenticar,
     olvidePassword,
     comprobarToken,
-    nuevoPassword
+    nuevoPassword,
+    actualizarPefil
 }
